@@ -1,0 +1,1 @@
+"""Shared accessible chart theme."""
