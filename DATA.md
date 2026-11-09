@@ -36,6 +36,22 @@ Every status note is dated. Re-check before each publish (P11, P20).
 6. **Parser note for P03:** Minnesota's pages show 0 poll rows in the quick survey because Democrats appear as "(DFL)", not "(D)". Party tags need a mapping.
 7. **Wikimedia User-Agent:** `mp-polling-postmortem/0.1 (https://github.com/johnpospisil/midterm-polling-2026) httpx/0.28` works. Without the `https://` URL and library token, httpx requests get a 403.
 
+## P02 capture (2026-11-09)
+
+| What | Where | Count / as-of |
+|---|---|---|
+| Wikipedia pages, election-eve revision (last before 2026-11-03 11:00 UTC) + current revision | `data/raw/wikipedia/<page>/<revid>.{html,wikitext}`, `manifest.csv` (revid, timestamps, sha256) | 126 pages × 2 = 252 revisions, 198 MB: 35 Senate, 36 governor, 52 House state pages, 3 overview pages. Election-eve revisions range from 2026-10-24 (quiet pages) to 2026-11-03 10:52 UTC |
+| Aggregator final averages | `data/processed/final_averages.parquet` (from Wikipedia "Source of poll aggregation" tables) | 20 Senate + 21 governor races + generic ballot. Silver Bulletin 42 race rows, 270toWin 36, DDHQ 34, RCP 34, FiftyPlusOne 33, NBC 1 (generic), Texas Tribune 1. Race to the WH appears only in primary or hypothetical tables, so it has no final averages |
+| Forecaster ratings | `data/processed/final_forecasts.parquet` (`kind = rating`) | From the overview pages' ratings tables: Cook, DDHQ, Fox, IE, NBC, RCP, Sabato, Silver for all 71 races; Economist, FPO, MS NOW, Split Ticket for the 35 Senate races. Rating dates Oct 29–Nov 3 |
+| Split Ticket model | `data/raw/forecasts/splitticket/*.csv` + `meta.json`; `final_forecasts.parquet` (`kind = model`) | Win probability + projected margin, 35 Senate + 435 House races (no governors). Datawrapper versions last modified **2026-11-03 04:06–04:08 UTC** (election eve); `snapshot.py` takes the last version before the cutoff. Chamber control: D 76.8% Senate, 92.4% House |
+| Wayback captures | `data/raw/forecasts/wayback/` | Silver Bulletin landing, Senate and generic pages (paywalled: free text only); FiftyPlusOne (empty JavaScript shell, **no data**); Split Ticket article |
+
+**Rules used to choose the final-matchup table:** nominees and parties come from the election-eve infobox. An aggregation table is kept only if every candidate column matches a nominee, by first name + surname, or by surname alone when it's unique. This handles untagged headers (NH Senate), the top-two primary table (CA governor), replaced candidates (ME Senate: Troy Jackson replacing Graham Platner; SC Senate: Darline Graham replacing Lindsey Graham), and shared surnames (AK Senate: Dan S. Sullivan (R) vs Daniel J. Sullivan Jr. (I)). Where there's no Democrat, the independent is the D side (NE Senate: Dan Osborn).
+
+**Not captured:** DDHQ and Economist win probabilities (both block automated access); Silver Bulletin and FiftyPlusOne race-level probabilities (paywalled, or the capture holds no data). Their categorical ratings are in the table above.
+
+**Polls added after the election:** 9 races have 1–3 more poll rows in the current revision than on election eve (CO gov/Sen, FL gov/Sen, IL gov, AR Sen, ID Sen, MI Sen, NE Sen). See the P03 question.
+
 ## Sources that block reuse, and fallbacks
 
 | Source | Blocker | Fallback |
@@ -49,5 +65,5 @@ Every status note is dated. Re-check before each publish (P11, P20).
 
 - [x] Census API key: stored as `CENSUS_API_KEY` in `.env` (gitignored); ACS 2024 5-year call verified 2026-11-09.
 - [ ] Confirm the CC BY 4.0 notice on the archived 538 polls page (2025-03-06 capture) before publishing 2018–2024 derived data.
-- [ ] Split Ticket "Get the Data": check whether it's free and what its terms say (P02).
-- [ ] Check the DDHQ and Economist live pages by hand for final numbers (P02).
+- [x] Split Ticket "Get the Data": free Datawrapper download offered by the publisher; no licence stated. Use cited per-race numbers for comparison only (2026-11-09).
+- [x] DDHQ and Economist probabilities: skipped by user decision (2026-11-09); their ratings are used instead.

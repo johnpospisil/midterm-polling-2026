@@ -30,6 +30,8 @@ Act as a senior data scientist whose priority is making results understandable t
 | Data terms | Primary sources and CC-licensed tables only; respect robots.txt; cite everything in DATA.md with dates |
 | Forecasters (chart 6) | Split Ticket, FiftyPlusOne (Nov 3 Wayback capture), Silver Bulletin if its free view shows the numbers. DDHQ and the Economist only if their live pages still show final numbers that can be transcribed by hand |
 | Unclear-terms sources | Take only a few cited final numbers per race (win probability, projected margin) by hand or from Wayback; use for comparison; **never bulk-redistribute**. Aggregator averages come from Wikipedia's tables |
+| Late-added polls | Use the current Wikipedia revision; keep polls with field end ≤ 2026-11-02; flag those missing from the election-eve revision `added_post_election`; robustness check without them |
+| DDHQ / Economist probabilities | Skipped (blocked); chart 6 uses their ratings only |
 | Census | ACS 5-year 2024; key in `.env` as `CENSUS_API_KEY` (verified 2026-11-09) |
 
 ## Timeline
@@ -86,7 +88,7 @@ Copy each prompt into Claude Code in order. "When" is the earliest sensible star
 
   **Checkpoint questions:** Which aggregators and forecasters should be included? Should sources with unclear terms be skipped, or used only for comparison and not redistributed?
 
-- [ ] **P02: Freeze the pre-election record.**
+- [x] ✅ DONE! **P02: Freeze the pre-election record.** _Done 2026-11-09: 126 Wikipedia pages × (election-eve + current) frozen; aggregator averages for 41 races + generic ballot; ratings from 12 raters; Split Ticket final model (Senate + House) from Nov 3 Datawrapper versions. DDHQ/Economist probabilities not obtainable._
   **When:** Tue Nov 10 – Wed Nov 11. ⚠️ Don't delay. Sites change their pages after the election.
   > Write `ingest/wikipedia_polls.py` fetch mode: for every 2026 Senate, governor, generic-ballot and polled-House page found in P01, use the MediaWiki API to get the **last revision before 2026-11-03 06:00 ET** and the **current revision** (pollsters sometimes add late polls afterwards). Save raw HTML/wikitext with revision ids to `data/raw/wikipedia/` plus a manifest. Write `ingest/aggregators.py` and `ingest/snapshot.py` to capture each approved aggregator's final polling average and each approved forecaster's final probabilities and projected margins per race, from the live site if it still shows them, otherwise from the closest Wayback snapshot before Nov 3. Record the snapshot timestamp on every row. Write `data/processed/final_averages.parquet` and `final_forecasts.parquet`.
 
@@ -325,3 +327,4 @@ Copy each prompt into Claude Code in order. "When" is the earliest sensible star
 
 - 2026-11-09: Plan written. Pre-election snapshots were never captured (P34's B1 didn't run), so P02 rebuilds them from Wikipedia revision history and the Wayback Machine. Decisions: first look ~Nov 24 + final ~Dec 18; independent of Project 34; find a reviewer by Nov 20. Next: P01.
 - 2026-11-09: P01 done (see DATA.md). Wikimedia needs a User-Agent with an `https://` contact URL plus the library name. The 2026 poll table must be released under CC BY-SA 4.0. User approved the forecaster list and the unclear-terms rule (see Decisions); Census key verified. Next: P02.
+- 2026-11-09: P02 done (see DATA.md "P02 capture"). Nominees come from the election-eve infobox; that's how final-matchup tables are picked. P03 must handle replaced candidates (ME, SC Senate), independents as the D side (NE Senate), shared surnames (AK Senate) and 3-way races. User decided: keep late-added polls (flagged, field end ≤ Nov 2) and skip DDHQ/Economist probabilities. Next: P03.
