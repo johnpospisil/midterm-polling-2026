@@ -23,6 +23,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, Tag
 
 from mp.geo import STATES, race_id
+from mp.names import NomineeMatcher
 
 _FOOTNOTE = re.compile(r"\s*\[\s*[^\]]*\]")
 _PARTY_TAG = re.compile(r"^(.*?)\s*\(\s*([A-Za-z.\-]+)\s*\)$")
@@ -134,47 +135,6 @@ def nominees_from_infobox(html: str) -> dict[str, str]:
         if len(parties) == len(names):
             out.update({n: p for n, w in zip(names, parties) if (p := _party_word(w))})
     return out
-
-
-_SUFFIX = {"jr", "sr", "ii", "iii", "iv"}
-
-
-def _name_tokens(name: str) -> list[str]:
-    name = re.sub(r"\(.*?\)", " ", name)  # party tags, "(replacing ...)" notes
-    toks = [re.sub(r"[^a-z\-]", "", t) for t in name.lower().replace(",", " ").split()]
-    return [t for t in toks if t and t not in _SUFFIX]
-
-
-def _surname(name: str) -> str:
-    t = _name_tokens(name)
-    return t[-1] if t else ""
-
-
-class NomineeMatcher:
-    """Match a table header name to a nominee: first name + surname, else a unique surname.
-
-    Needed because e.g. Alaska 2026 Senate has Dan S. Sullivan (R) and Daniel J. Sullivan Jr. (I).
-    """
-
-    def __init__(self, nominees: dict[str, str]):
-        self.nominees = nominees
-        self.by_first_last: dict[tuple[str, str], tuple[str, str]] = {}
-        by_last: dict[str, list[tuple[str, str]]] = {}
-        for n, p in nominees.items():
-            t = _name_tokens(n)
-            if t:
-                self.by_first_last[(t[0], t[-1])] = (n, p)
-                by_last.setdefault(t[-1], []).append((n, p))
-        self.by_unique_last = {k: v[0] for k, v in by_last.items() if len(v) == 1}
-
-    def __bool__(self) -> bool:
-        return bool(self.nominees)
-
-    def match(self, header_name: str) -> tuple[str, str] | None:
-        t = _name_tokens(header_name)
-        if not t:
-            return None
-        return self.by_first_last.get((t[0], t[-1])) or self.by_unique_last.get(t[-1])
 
 
 def parse_aggregation_tables(html: str, rid: str, nominees: dict[str, str] | None = None) -> list[dict]:

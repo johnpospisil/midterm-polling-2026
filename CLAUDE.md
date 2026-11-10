@@ -31,6 +31,7 @@ Act as a senior data scientist whose priority is making results understandable t
 | Forecasters (chart 6) | Split Ticket, FiftyPlusOne (Nov 3 Wayback capture), Silver Bulletin if its free view shows the numbers. DDHQ and the Economist only if their live pages still show final numbers that can be transcribed by hand |
 | Unclear-terms sources | Take only a few cited final numbers per race (win probability, projected margin) by hand or from Wayback; use for comparison; **never bulk-redistribute**. Aggregator averages come from Wikipedia's tables |
 | Late-added polls | Use the current Wikipedia revision; keep polls with field end ≤ 2026-11-02; flag those missing from the election-eve revision `added_post_election`; robustness check without them |
+| Non-standard contests (2026-11-10) | No Democrat → the independent is the D side (ID, NE, SD Sen; AK House), flagged for a check without them. RCV races (AK; ME Sen/House) → first-round shares, same rule for every pollster. 3-way races → margin is D side minus R side only; the third candidate's share is kept in `candidates`. Same-party top-two contests are dropped automatically (no R side) |
 | DDHQ / Economist probabilities | Skipped (blocked); chart 6 uses their ratings only |
 | Census | ACS 5-year 2024; key in `.env` as `CENSUS_API_KEY` (verified 2026-11-09) |
 
@@ -101,7 +102,7 @@ Copy each prompt into Claude Code in order. "When" is the earliest sensible star
 
 ### Phase 1: Poll and pollster tables (Nov 10–14)
 
-- [ ] **P03: Race registry + Wikipedia poll parser.**
+- [x] ✅ DONE! **P03: Race registry + Wikipedia poll parser.** _Done 2026-11-09: races.csv (507 races); polls_raw.parquet with 2,654 rows (Sen 815, Gov 722, House 381, generic 736); 0 silent table misses; 77 row issues listed._
   **When:** Wed Nov 11 – Thu Nov 12.
   > Build `data/reference/races.csv` (race_id, office, state, district, candidates with party, rating/competitiveness if available, special-election flag, runoff/RCV/top-two flags). Then write the parser half of `ingest/wikipedia_polls.py`: turn each poll table into raw rows (pollster, sponsor, field start/end, sample size, population LV/RV/A, mode if listed, every candidate's share, undecided, footnotes, source revision id). Handle merged cells, footnote markers, ranges like "±3.1", multiple versions of the same poll (LV/RV, with/without leaners, head-to-heads vs full ballots). Write the parser tests first using saved fixtures.
 
@@ -328,3 +329,4 @@ Copy each prompt into Claude Code in order. "When" is the earliest sensible star
 - 2026-11-09: Plan written. Pre-election snapshots were never captured (P34's B1 didn't run), so P02 rebuilds them from Wikipedia revision history and the Wayback Machine. Decisions: first look ~Nov 24 + final ~Dec 18; independent of Project 34; find a reviewer by Nov 20. Next: P01.
 - 2026-11-09: P01 done (see DATA.md). Wikimedia needs a User-Agent with an `https://` contact URL plus the library name. The 2026 poll table must be released under CC BY-SA 4.0. User approved the forecaster list and the unclear-terms rule (see Decisions); Census key verified. Next: P02.
 - 2026-11-09: P02 done (see DATA.md "P02 capture"). Nominees come from the election-eve infobox; that's how final-matchup tables are picked. P03 must handle replaced candidates (ME, SC Senate), independents as the D side (NE Senate), shared surnames (AK Senate) and 3-way races. User decided: keep late-added polls (flagged, field end ≤ Nov 2) and skip DDHQ/Economist probabilities. Next: P03.
+- 2026-11-09: P03 done (see DATA.md "P03"). Generic-ballot polls come from a Wikipedia template, not the House page. races.csv carries no Split Ticket numbers (terms rule). 2026-11-10: user approved the non-standard-contest rules (see Decisions). Next: P04.

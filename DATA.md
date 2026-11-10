@@ -52,6 +52,15 @@ Every status note is dated. Re-check before each publish (P11, P20).
 
 **Polls added after the election:** 9 races have 1–3 more poll rows in the current revision than on election eve (CO gov/Sen, FL gov/Sen, IL gov, AR Sen, ID Sen, MI Sen, NE Sen). See the P03 question.
 
+## P03 race registry and raw poll table (2026-11-09)
+
+- **`data/reference/races.csv`** (committed; **CC BY-SA 4.0**, as nominees and ratings come from Wikipedia): 507 rows = 35 Senate + 36 governor + 435 House + generic ballot. Statewide nominees come from the election-eve infobox. House nominees come from Split Ticket's final district table (names only, as facts; **no Split Ticket probabilities or margins are committed**). Flags: `rcv` (AK; ME federal), `top_two` (CA, WA), `top_four` (AK), `nominee_placeholder` (5 Louisiana House seats show "Eventual Nominee" in Split Ticket's final table), `replacement_note` (ME Sen, SC Sen, NM gov).
+- **Generic-ballot polls** are in `Template:2026 United States elections/polling` (election-eve revid 1383518721, 2026-11-03 03:11 UTC), not on the House overview page. Since Nov 5 the template is shown on a new page, "2026 United States elections polling".
+- **`data/processed/polls_raw.parquet`** (gitignored): 2,654 rows from current revisions plus 3 rows removed after the election (flagged). Senate 815 rows (30 races), governor 722 (34 races), House 381 (113 districts), generic ballot 736. Final three weeks: 261 Senate, 237 governor, 93 House, 50 generic. 32 statewide races have 5+ polls in the final three weeks.
+- **Table selection:** a table is kept only if both principals are among its candidate columns, which drops primaries and hypothetical matchups. Skipped tables are in `polls_parse_log.csv`: 311 not-final-matchup, 288 primary or convention, 48 annotation rows, 18 statewide congressional polls on House pages. A check for tables that contain both principals' surnames yet were skipped found **0**.
+- **Row issues** (`data/processed/p03_parse_issues.csv`): 63 with no sample size, 10 where a principal wasn't offered, 3 month-only dates, 1 reversed date range in the source ("July 8–6", NV gov; flagged, not fixed).
+- **Post-election edits:** 16 rows added after the election (field end ≤ Nov 2), 2 edited, 3 removed.
+
 ## Sources that block reuse, and fallbacks
 
 | Source | Blocker | Fallback |
