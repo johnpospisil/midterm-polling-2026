@@ -1,4 +1,4 @@
-from mp.build.races import choose_principals, flags_for, replacement_notes
+from mp.build.races import choose_principals, consensus_rating, flags_for, replacement_notes
 
 
 def test_choose_principals_prefers_d_then_i_and_most_polled():
@@ -26,3 +26,19 @@ def test_replacement_notes():
     html = ('<table class="infobox"><tr><th>Nominee</th><td>Susan Collins</td>'
             "<td>Troy Jackson (replacing Graham Platner )</td></tr></table>")
     assert replacement_notes(html) == ["Troy Jackson replacing Graham Platner"]
+
+
+def test_consensus_rating_is_the_most_common_rating():
+    assert consensus_rating(["Safe R", "Safe R", "Likely R"]) == "Safe R"
+
+
+def test_consensus_rating_ties_go_to_the_rating_nearest_the_median():
+    # Lean D and Tossup tie 2-2; the median of all five is Lean D
+    assert consensus_rating(["Lean D", "Lean D", "Tossup", "Tossup", "Safe D"]) == "Lean D"
+    # same rule mirrored for Republicans
+    assert consensus_rating(["Lean R", "Lean R", "Tossup", "Tossup", "Safe R"]) == "Lean R"
+
+
+def test_consensus_rating_symmetric_tie_is_the_median_and_order_free():
+    assert consensus_rating(["Lean D", "Lean R"]) == "Tossup"
+    assert consensus_rating(["Likely D", "Lean D"]) == consensus_rating(["Lean D", "Likely D"])

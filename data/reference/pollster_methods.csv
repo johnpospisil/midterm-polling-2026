@@ -1,0 +1,177 @@
+pollster,scope,field,value,source_url,accessed,evidence
+YouGov,own,mode_main,text_to_web,https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ia_20261026_lv.pdf,2026-11-10,registered voters who were contacted via text message and interviewed on YouGov's web-based survey system
+YouGov,own,modes,text_to_web,https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ia_20261026_lv.pdf,2026-11-10,All interviews were conducted online using YouGov's web-based survey system
+YouGov,own,population,LV,https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ia_20261026_lv.pdf,2026-11-10,"Likely voters are defined using a model that takes into account past vote, demographics, and self-reported likelihood to vote"
+YouGov,own,weight_education,yes,https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ia_20261026_lv.pdf,2026-11-10,"weighted to gender, age, in-state geography ..., party registration, and imputed education and 2024 presidential vote"
+YouGov,own,weight_recalled_vote,yes,https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ia_20261026_lv.pdf,2026-11-10,"imputed education and 2024 presidential vote (imputed, not respondent recall)"
+YouGov,own,weight_party,yes,https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ia_20261026_lv.pdf,2026-11-10,party registration
+YouGov,own,panel_source,state voter list (stratified random sample),https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ia_20261026_lv.pdf,2026-11-10,Stratified random sample of voters selected from a list of Iowa registered voters
+New York Times / Siena,all,mode_main,live_phone,https://www.pressherald.com/?p=7675524,2026-11-10,"uses phone calls ... rather than text messages or online forms; interviewers called 608 likely Maine voters (Times/Press Herald/Siena, June 2026)"
+New York Times / Siena,all,modes,live_phone,https://www.pressherald.com/?p=7675524,2026-11-10,93% were reached on a cellphone
+New York Times / Siena,all,population,LV,https://www.pressherald.com/?p=7675524,2026-11-10,608 likely Maine voters
+New York Times / Siena,all,weight_education,yes,https://www.pressherald.com/?p=7675524,2026-11-10,"to match the proportion of likely voters of different genders, age groups, education levels and other characteristics"
+New York Times / Siena,all,weight_recalled_vote,unknown,,,not stated in the article; NYT methodology page returned 403
+New York Times / Siena,all,weight_party,unknown,,,not stated in the article
+New York Times / Siena,all,panel_source,voter database,https://www.pressherald.com/?p=7675524,2026-11-10,from a specialized database
+Emerson College,all,mode_main,mixed,https://emersoncollegepolling.com/october-2026-kansas-poll-hamilton-maintains-edge-over-marshall/,2026-11-10,"MMS text-to-web (n=443), landline via interactive voice response (n=141), panel interviews provided by PureSpectrum (n=216)"
+Emerson College,all,modes,text_to_web;ivr;online_opt_in,https://emersoncollegepolling.com/october-2026-kansas-poll-hamilton-maintains-edge-over-marshall/,2026-11-10,"text-to-web, IVR, PureSpectrum panel"
+Emerson College,all,population,LV,https://emersoncollegepolling.com/october-2026-kansas-poll-hamilton-maintains-edge-over-marshall/,2026-11-10,"Kansas likely voters, n=800"
+Emerson College,all,weight_education,yes,https://emersoncollegepolling.com/october-2026-kansas-poll-hamilton-maintains-edge-over-marshall/,2026-11-10,"weighted by gender, education, race, age, previous vote recall, and region"
+Emerson College,all,weight_recalled_vote,sometimes,https://emersoncollegepolling.com/california-2026-poll-xavier-becerra-holds-27-point-lead-over-steve-hilton/,2026-11-10,"Kansas: 'previous vote recall'; California: 'weighted by gender, education, party registration, and region'"
+Emerson College,all,weight_party,sometimes,https://emersoncollegepolling.com/california-2026-poll-xavier-becerra-holds-27-point-lead-over-steve-hilton/,2026-11-10,California: party registration; Kansas list omits party
+Emerson College,all,panel_source,Aristotle voter file (text/IVR) + PureSpectrum opt-in panel matched to voter file,https://emersoncollegepolling.com/october-2026-kansas-poll-hamilton-maintains-edge-over-marshall/,2026-11-10,Panel responses were matched to the Aristotle voter file
+University of New Hampshire,all,mode_main,probability_panel,https://scholars.unh.edu/granite_state_poll/index.html,2026-11-10,a probability-based web panel of New Hampshire residents recruited by the Survey Center
+University of New Hampshire,all,modes,probability_panel;text_to_web,https://indepthnh.org/2026/08/27/ayottes-approval-improves-lead-over-warmington-grows-in-new-hampshire-gubernatorial-race/,2026-11-10,"Granite State Panel members ... 1,418 completed the survey online; 725 ... after receiving an invitation via text message (Aug 2026)"
+University of New Hampshire,all,population,LV,https://indepthnh.org/2026/08/27/ayottes-approval-improves-lead-over-warmington-grows-in-new-hampshire-gubernatorial-race/,2026-11-10,"1,878 likely general election voters"
+University of New Hampshire,all,panel_source,Granite State Panel (own probability panel) + text invitations,https://indepthnh.org/2026/08/27/ayottes-approval-improves-lead-over-warmington-grows-in-new-hampshire-gubernatorial-race/,2026-11-10,Granite State Panel members were sent an invitation
+University of New Hampshire,all,weight_education,unknown,,,weighting not described in the release text found; PDF returned 403
+University of New Hampshire,all,weight_recalled_vote,unknown,,,weighting not described in the release text found; PDF returned 403
+University of New Hampshire,all,weight_party,unknown,,,weighting not described in the release text found; PDF returned 403
+InsiderAdvantage,all,mode_main,mixed,https://insideradvantage.com/insideradvantage-final-alaska-survey-race-tied-in-first-round-48-peltola-48-sullivan-tied-in-ranked-choice-round/,2026-11-10,Mixed Mode Panel/Text
+InsiderAdvantage,all,modes,text_to_web;online_opt_in,https://insideradvantage.com/insideradvantage-final-alaska-survey-race-tied-in-first-round-48-peltola-48-sullivan-tied-in-ranked-choice-round/,2026-11-10,Mixed Mode Panel/Text
+InsiderAdvantage,all,population,LV,https://insideradvantage.com/insideradvantage-final-alaska-survey-race-tied-in-first-round-48-peltola-48-sullivan-tied-in-ranked-choice-round/,2026-11-10,1200 LV
+InsiderAdvantage,all,weight_education,not_listed,https://insideradvantage.com/insideradvantage-final-alaska-survey-race-tied-in-first-round-48-peltola-48-sullivan-tied-in-ranked-choice-round/,2026-11-10,"Weighted for Age, Race, Gender, and Political Affiliation"
+InsiderAdvantage,all,weight_recalled_vote,not_listed,https://insideradvantage.com/insideradvantage-final-alaska-survey-race-tied-in-first-round-48-peltola-48-sullivan-tied-in-ranked-choice-round/,2026-11-10,"Weighted for Age, Race, Gender, and Political Affiliation"
+InsiderAdvantage,all,weight_party,yes,https://insideradvantage.com/insideradvantage-final-alaska-survey-race-tied-in-first-round-48-peltola-48-sullivan-tied-in-ranked-choice-round/,2026-11-10,Political Affiliation
+InsiderAdvantage,all,panel_source,unknown,,,panel vendor not named
+Quantus Insights,all,mode_main,text_to_web,https://cdn.sanity.io/files/ifn0l6bs/production/48e9d3be8a69fc295c00da2c82d13ad0b4eeb2e4.pdf,2026-11-10,SMS-to-mobile cell interviews; contacted through SMS invitations sent to mobile phones
+Quantus Insights,all,modes,text_to_web,https://cdn.sanity.io/files/ifn0l6bs/production/48e9d3be8a69fc295c00da2c82d13ad0b4eeb2e4.pdf,2026-11-10,SMS-to-mobile cell interviews
+Quantus Insights,all,population,LV,https://cdn.sanity.io/files/ifn0l6bs/production/48e9d3be8a69fc295c00da2c82d13ad0b4eeb2e4.pdf,2026-11-10,likely-voter screen; reporting base is 657 likely voters
+Quantus Insights,all,weight_education,yes,https://cdn.sanity.io/files/ifn0l6bs/production/48e9d3be8a69fc295c00da2c82d13ad0b4eeb2e4.pdf,2026-11-10,"seven dimensions: sex, age range, race and ethnicity (modeled), education (modeled), metro type, party identification (reported) and media market"
+Quantus Insights,all,weight_recalled_vote,not_listed,https://cdn.sanity.io/files/ifn0l6bs/production/48e9d3be8a69fc295c00da2c82d13ad0b4eeb2e4.pdf,2026-11-10,"recall is audited, not weighted: 'the sample recalls Trump +24.8 against a certified +29.2'"
+Quantus Insights,all,weight_party,yes,https://cdn.sanity.io/files/ifn0l6bs/production/48e9d3be8a69fc295c00da2c82d13ad0b4eeb2e4.pdf,2026-11-10,party identification (reported)
+Quantus Insights,all,panel_source,voter file,https://cdn.sanity.io/files/ifn0l6bs/production/48e9d3be8a69fc295c00da2c82d13ad0b4eeb2e4.pdf,2026-11-10,registered South Dakota voter-file records; stratified random sampling
+co/efficient,all,mode_main,mixed,https://battlegrounds.coefficient.org/ia/,2026-11-10,Mobile text responses and landline interviews
+co/efficient,all,modes,text_to_web;unknown,https://battlegrounds.coefficient.org/ia/,2026-11-10,landline interview mode (live or IVR) not stated
+co/efficient,all,population,LV,https://battlegrounds.coefficient.org/ia/,2026-11-10,"1,020 likely general election voters"
+co/efficient,all,weight_education,yes,https://battlegrounds.coefficient.org/ia/,2026-11-10,"weighted on age, gender, race, education, geography, and registered party"
+co/efficient,all,weight_recalled_vote,not_listed,https://battlegrounds.coefficient.org/ia/,2026-11-10,"weighted on age, gender, race, education, geography, and registered party"
+co/efficient,all,weight_party,sometimes,https://battlegrounds.coefficient.org/oh/,2026-11-10,"Iowa includes registered party; Ohio: 'weighted on age, gender, race, education, and geography'"
+co/efficient,all,panel_source,unknown,,,sample frame not named
+Rasmussen Reports,all,mode_main,mixed,https://www.rasmussenreports.com/public_content/politics/elections/election_2026/election_2026_maine_senate,2026-11-10,national telephone and online survey
+Rasmussen Reports,all,modes,ivr;online_opt_in,https://www.rasmussenreports.com/public_content/about_us/methodology,2026-11-10,"automated polling methodology ... single, digitally-recorded, voice; online survey tool ... from a demographically diverse panel"
+Rasmussen Reports,all,population,LV,https://www.rasmussenreports.com/public_content/politics/elections/election_2026/election_2026_maine_senate,2026-11-10,Likely Maine voters
+Rasmussen Reports,all,weight_education,unknown,,,list ends 'and other factors'
+Rasmussen Reports,all,weight_recalled_vote,unknown,,,list ends 'and other factors'
+Rasmussen Reports,all,weight_party,yes,https://www.rasmussenreports.com/public_content/about_us/methodology,2026-11-10,"age, race, gender, political party, and other factors; dynamic partisan weighting targets"
+Rasmussen Reports,all,panel_source,unknown,,,online panel not named
+Beacon Research / Shaw & Co. Research,all,mode_main,live_phone,https://www.foxnews.com/politics/fox-news-poll-texas-senate-race-galloping-toward-photo-finish,2026-11-10,"live interviewers on landlines (205) and cellphones (1,303) or completed the survey online after receiving a text message (503)"
+Beacon Research / Shaw & Co. Research,all,modes,live_phone;text_to_web,https://www.foxnews.com/politics/fox-news-poll-texas-senate-race-galloping-toward-photo-finish,2026-11-10,live interviewers ... or online after receiving a text message
+Beacon Research / Shaw & Co. Research,all,population,LV/RV,https://www.foxnews.com/politics/fox-news-poll-texas-senate-race-galloping-toward-photo-finish,2026-11-10,"2,011 Texas registered voters ... subsample of 1,398 likely voters"
+Beacon Research / Shaw & Co. Research,all,weight_education,yes,https://www.foxnews.com/politics/fox-news-poll-texas-senate-race-galloping-toward-photo-finish,2026-11-10,"Weights are generally applied to age, race, education and area variables"
+Beacon Research / Shaw & Co. Research,all,weight_recalled_vote,not_listed,https://www.foxnews.com/politics/fox-news-poll-texas-senate-race-galloping-toward-photo-finish,2026-11-10,"Weights are generally applied to age, race, education and area variables"
+Beacon Research / Shaw & Co. Research,all,weight_party,not_listed,https://www.foxnews.com/politics/fox-news-poll-texas-senate-race-galloping-toward-photo-finish,2026-11-10,"Weights are generally applied to age, race, education and area variables"
+Beacon Research / Shaw & Co. Research,all,panel_source,statewide voter file,https://www.foxnews.com/politics/fox-news-poll-texas-senate-race-galloping-toward-photo-finish,2026-11-10,randomly selected from a statewide voter file
+Trafalgar Group,all,mode_main,mixed,https://www.thetrafalgargroup.org/polling-methodology/,2026-11-10,"a mix of six different methods: Live callers, Integrated voice response, Text messages, Emails, Digital dial back interface, Online targeted opt-in digital survey platforms"
+Trafalgar Group,all,modes,live_phone;ivr;text_to_web;online_opt_in,https://www.thetrafalgargroup.org/polling-methodology/,2026-11-10,"six methods incl. live, IVR, text, email, opt-in online"
+Trafalgar Group,all,population,LV,https://www.thetrafalgargroup.org/wp-content/uploads/2026/11/MI-Gen-Sen-Poll-Report-1101.pdf,2026-11-10,Likely General Election Voters
+Trafalgar Group,all,weight_education,unknown,,,weighting variables not published
+Trafalgar Group,all,weight_recalled_vote,unknown,,,weighting variables not published
+Trafalgar Group,all,weight_party,unknown,,,weighting variables not published
+Trafalgar Group,all,panel_source,unknown,,,not published
+Public Policy Polling,all,mode_main,text_to_web,https://www.cnwmedia.com/article/cnw-poll-pritzker-leads-bailey-by-20-points-democrats-ahead-in-four-other-statewide-races,2026-11-10,"Seventy-two percent of respondents participated by text, and 28% participated by landline"
+Public Policy Polling,all,modes,text_to_web;unknown,https://www.cnwmedia.com/article/cnw-poll-pritzker-leads-bailey-by-20-points-democrats-ahead-in-four-other-statewide-races,2026-11-10,landline mode (live or IVR) not stated
+Public Policy Polling,all,population,unknown,,,'569 Illinois voters' (population not specified)
+Public Policy Polling,all,weight_education,unknown,,,not stated in the release found
+Public Policy Polling,all,weight_recalled_vote,unknown,,,not stated in the release found
+Public Policy Polling,all,weight_party,unknown,,,not stated in the release found
+Public Policy Polling,all,panel_source,unknown,,,not stated in the release found
+ActiVote,all,mode_main,online_opt_in,https://www.activote.net/trust/methodology,2026-11-10,"ActiVote is a free app ... our users are not a carefully, randomly selected group of people"
+ActiVote,all,modes,online_opt_in,https://www.activote.net/trust/methodology,2026-11-10,app users
+ActiVote,all,population,LV,https://www.activote.net/polls/2026/il-governor/2026-10-31/,2026-11-10,400 LV
+ActiVote,all,weight_education,yes,https://www.activote.net/trust/methodology,2026-11-10,"We weight ... based on age, gender, party affiliation, ethnicity, income, education and region"
+ActiVote,all,weight_recalled_vote,not_listed,https://www.activote.net/trust/methodology,2026-11-10,"age, gender, party affiliation, ethnicity, income, education and region"
+ActiVote,all,weight_party,yes,https://www.activote.net/trust/methodology,2026-11-10,party affiliation
+ActiVote,all,panel_source,own app users,https://www.activote.net/trust/methodology,2026-11-10,ActiVote is a free app
+ActiVote,all,aapor_ti,yes,https://www.activote.net/trust/methodology,2026-11-10,ActiVote is a member of AAPOR's Transparency Initiative
+Marist University,all,mode_main,text_to_web,https://maristpoll.marist.edu/wp-content/uploads/2026/10/Marist-Poll_Maine-NOS-and-Tables_202610261228-3_43sjl2.pdf,2026-11-10,"By phone using live interviewers (261), by text (1170), or online (18)"
+Marist University,all,modes,live_phone;text_to_web;online_opt_in,https://maristpoll.marist.edu/wp-content/uploads/2026/10/Marist-Poll_Maine-NOS-and-Tables_202610261228-3_43sjl2.pdf,2026-11-10,"multi-mode design: phone, text, online (Cint panels matched to L2)"
+Marist University,all,population,LV/RV,https://maristpoll.marist.edu/wp-content/uploads/2026/10/Marist-Poll_Maine-NOS-and-Tables_202610261228-3_43sjl2.pdf,2026-11-10,"1,449 Maine registered voters ... A likely voter weight was applied"
+Marist University,all,weight_education,yes,https://maristpoll.marist.edu/wp-content/uploads/2026/10/Marist-Poll_Maine-NOS-and-Tables_202610261228-3_43sjl2.pdf,2026-11-10,Education was balanced to match current CPS estimates
+Marist University,all,weight_recalled_vote,not_listed,https://maristpoll.marist.edu/wp-content/uploads/2026/10/Marist-Poll_Maine-NOS-and-Tables_202610261228-3_43sjl2.pdf,2026-11-10,"balanced ... by age, gender, income, and race/ethnicity using L2 voter parameters; education to CPS"
+Marist University,all,weight_party,not_listed,https://maristpoll.marist.edu/wp-content/uploads/2026/10/Marist-Poll_Maine-NOS-and-Tables_202610261228-3_43sjl2.pdf,2026-11-10,"age, gender, income, race/ethnicity; education"
+Marist University,all,panel_source,L2 voter file + Cint panels matched to L2,https://maristpoll.marist.edu/wp-content/uploads/2026/10/Marist-Poll_Maine-NOS-and-Tables_202610261228-3_43sjl2.pdf,2026-11-10,randomly selected from L2's registered voter database
+Research Co.,all,mode_main,online_opt_in,https://researchco.ca/2026/11/02/midterms-2026-two/,2026-11-10,online surveys ... among representative samples of 450 likely voters
+Research Co.,all,modes,online_opt_in,https://researchco.ca/2026/11/02/midterms-2026-two/,2026-11-10,online surveys
+Research Co.,all,population,LV,https://researchco.ca/2026/11/02/midterms-2026-two/,2026-11-10,450 likely voters
+Research Co.,all,weight_education,not_listed,https://researchco.ca/2026/11/02/midterms-2026-two/,2026-11-10,statistically weighted according to U.S. census figures for age and gender in each state
+Research Co.,all,weight_recalled_vote,not_listed,https://researchco.ca/2026/11/02/midterms-2026-two/,2026-11-10,age and gender only
+Research Co.,all,weight_party,not_listed,https://researchco.ca/2026/11/02/midterms-2026-two/,2026-11-10,age and gender only
+Research Co.,all,panel_source,unknown,,,panel not named
+Echelon Insights,all,mode_main,mixed,https://netchoice.org/wp-content/uploads/2026/10/NetChoice-October-2026-Antitrust-Tech-Survey-Topline.pdf,2026-11-10,"Mode: Online and Text to Web; Sample from Cint/Lucid, Purespectrum and RepData ... matched to L2 voter file"
+Echelon Insights,all,modes,text_to_web;online_opt_in,https://netchoice.org/wp-content/uploads/2026/10/NetChoice-October-2026-Antitrust-Tech-Survey-Topline.pdf,2026-11-10,Online and Text to Web
+Echelon Insights,all,population,LV,https://netchoice.org/wp-content/uploads/2026/10/NetChoice-October-2026-Antitrust-Tech-Survey-Topline.pdf,2026-11-10,voters in likely electorate
+Echelon Insights,all,weight_education,yes,https://netchoice.org/wp-content/uploads/2026/04/NetChoice-Apr-2026-National-Antitrust-Survey-Topline.pdf,2026-11-10,"Weighting dimensions included gender, age, race/ethnicity, education, DMA, turnout probability, party by ideology, 2024 presidential vote choice"
+Echelon Insights,all,weight_recalled_vote,yes,https://netchoice.org/wp-content/uploads/2026/04/NetChoice-Apr-2026-National-Antitrust-Survey-Topline.pdf,2026-11-10,2024 presidential vote choice (based on 2024 election results adjusted for modeled 2026 turnout)
+Echelon Insights,all,weight_party,yes,https://netchoice.org/wp-content/uploads/2026/04/NetChoice-Apr-2026-National-Antitrust-Survey-Topline.pdf,2026-11-10,party by ideology
+Echelon Insights,all,panel_source,L2 voter file (text) + online sample exchanges matched to L2,https://netchoice.org/wp-content/uploads/2026/10/NetChoice-October-2026-Antitrust-Tech-Survey-Topline.pdf,2026-11-10,"Cint/Lucid, Purespectrum and RepData"
+Change Research,all,population,LV,https://carolinaforward.org/news/the-october-2026-carolina-forward-poll/,2026-11-10,surveyed 829 North Carolina likely general election voters
+Change Research,all,mode_main,unknown,,,methodology statement returned 429 (rate limited); retry
+Change Research,all,modes,unknown,,,methodology statement returned 429 (rate limited); retry
+Change Research,all,weight_education,unknown,,,methodology statement returned 429 (rate limited); retry
+Change Research,all,weight_recalled_vote,unknown,,,methodology statement returned 429 (rate limited); retry
+Change Research,all,weight_party,unknown,,,methodology statement returned 429 (rate limited); retry
+Change Research,all,panel_source,unknown,,,methodology statement returned 429 (rate limited); retry
+AtlasIntel,all,mode_main,online_opt_in,https://cdn1.atlasintel.org/2026_midterms__iowa___atlas_pollstergraph_poll_115a969a5a5d4770.pdf,2026-11-10,Random Digital Recruitment (Atlas RDR): respondents are recruited randomly during routine web browsing
+AtlasIntel,all,modes,online_opt_in,https://cdn1.atlasintel.org/2026_midterms__iowa___atlas_pollstergraph_poll_115a969a5a5d4770.pdf,2026-11-10,web recruitment (non-probability)
+AtlasIntel,all,population,LV,https://cdn1.atlasintel.org/2026_midterms__iowa___atlas_pollstergraph_poll_115a969a5a5d4770.pdf,2026-11-10,"Iowa likely voters, 1,219 respondents"
+AtlasIntel,all,weight_education,yes,https://cdn1.atlasintel.org/2026_midterms__iowa___atlas_pollstergraph_poll_115a969a5a5d4770.pdf,2026-11-10,"post-stratified ... on gender, age group, education level, income level, region, and previous electoral behavior"
+AtlasIntel,all,weight_recalled_vote,yes,https://cdn1.atlasintel.org/2026_midterms__iowa___atlas_pollstergraph_poll_115a969a5a5d4770.pdf,2026-11-10,previous electoral behavior
+AtlasIntel,all,weight_party,not_listed,https://cdn1.atlasintel.org/2026_midterms__iowa___atlas_pollstergraph_poll_115a969a5a5d4770.pdf,2026-11-10,"gender, age, education, income, region, previous electoral behavior"
+AtlasIntel,all,panel_source,Atlas RDR (web-browsing recruitment),https://cdn1.atlasintel.org/2026_midterms__iowa___atlas_pollstergraph_poll_115a969a5a5d4770.pdf,2026-11-10,Atlas RDR
+Alaska Survey Research,all,population,A,https://www.juneauindependent.com/post/poll-peltola-ahead-of-sullivan-in-race-that-could-decide-control-of-us-senate,2026-11-10,"survey of 2,083 adults (Oct 2025)"
+Alaska Survey Research,all,mode_main,unknown,,,releases are posted on X/Bluesky only; no methodology statement found
+Alaska Survey Research,all,modes,unknown,,,releases are posted on X/Bluesky only; no methodology statement found
+Alaska Survey Research,all,weight_education,unknown,,,releases are posted on X/Bluesky only; no methodology statement found
+Alaska Survey Research,all,weight_recalled_vote,unknown,,,releases are posted on X/Bluesky only; no methodology statement found
+Alaska Survey Research,all,weight_party,unknown,,,releases are posted on X/Bluesky only; no methodology statement found
+Alaska Survey Research,all,panel_source,unknown,,,releases are posted on X/Bluesky only; no methodology statement found
+SurveyUSA,all,mode_main,mixed,https://kstp.com/kstp-news/top-news/kstp-surveyusa-poll-swing-in-senate-and-ag-races-klobuchar-up-slightly-on-demuth/,2026-11-10,"In some cases ... 100% by telephone; in some cases, 100% online; and in other cases, a blend of the two"
+SurveyUSA,all,modes,live_phone;ivr;online_opt_in,https://kstp.com/kstp-news/top-news/kstp-surveyusa-poll-swing-in-senate-and-ag-races-klobuchar-up-slightly-on-demuth/,2026-11-10,"sometimes using live interviewers, other times using the recorded voice of a professional announcer; or on an electronic device"
+SurveyUSA,all,population,LV,https://kstp.com/kstp-news/top-news/kstp-surveyusa-minnesota-statewide-races-inch-left-in-final-poll-before-election-day/,2026-11-10,final poll before Election Day (likely voters)
+SurveyUSA,all,weight_education,unknown,,,weighting not stated in the text found
+SurveyUSA,all,weight_recalled_vote,unknown,,,weighting not stated in the text found
+SurveyUSA,all,weight_party,unknown,,,weighting not stated in the text found
+SurveyUSA,all,panel_source,Aristotle (phone sample) + cell sample vendors,https://kstp.com/kstp-news/top-news/kstp-surveyusa-poll-swing-in-senate-and-ag-races-klobuchar-up-slightly-on-demuth/,2026-11-10,Landline telephone sample is purchased from Aristotle
+Suffolk University,all,mode_main,live_phone,https://www.suffolk.edu/-/media/suffolk/documents/academics/research-at-suffolk/suprc/polls/other-states/2026/10_14_2026_maine_press_release.pdf,2026-11-10,using live telephone interviews of households
+Suffolk University,all,modes,live_phone,https://www.suffolk.edu/-/media/suffolk/documents/academics/research-at-suffolk/suprc/polls/other-states/2026/10_14_2026_maine_press_release.pdf,2026-11-10,live telephone interviews
+Suffolk University,all,population,LV,https://www.suffolk.edu/-/media/suffolk/documents/academics/research-at-suffolk/suprc/polls/other-states/2026/10_14_2026_maine_press_release.pdf,2026-11-10,500 likely Maine general election voters
+Suffolk University,all,weight_education,unknown,,,not stated in the release
+Suffolk University,all,weight_recalled_vote,unknown,,,not stated in the release
+Suffolk University,all,weight_party,unknown,,,not stated in the release
+Suffolk University,all,panel_source,unknown,,,not stated in the release
+SSRS,all,mode_main,mixed,https://www.documentcloud.org/documents/28856720-cnn-poll-conducted-by-ssrs-michigan-october/,2026-11-10,surveyed online and by telephone from a registration-based sample ... (n=456) and through the SSRS Opinion Panel (n=312)
+SSRS,all,modes,probability_panel;text_to_web;live_phone,https://www.documentcloud.org/documents/28856720-cnn-poll-conducted-by-ssrs-michigan-october/,2026-11-10,"postcard, SMS, email invitations and telephone call attempts; SSRS Opinion Panel recruited using probability-based sampling"
+SSRS,all,population,LV/RV,https://www.documentcloud.org/documents/28856720-cnn-poll-conducted-by-ssrs-michigan-october/,2026-11-10,768 registered voters ... Results for likely voters ... weighted by their predicted probability of voting
+SSRS,all,weight_education,yes,https://www.documentcloud.org/documents/28856720-cnn-poll-conducted-by-ssrs-michigan-october/,2026-11-10,"weighted to reflect Census figures ... for education, race/ethnicity and race/ethnicity by education"
+SSRS,all,weight_recalled_vote,yes,https://www.documentcloud.org/documents/28856720-cnn-poll-conducted-by-ssrs-michigan-october/,2026-11-10,weighted among validated 2024 voters for recalled 2024 vote within Voter Poll regions
+SSRS,all,weight_party,yes,https://www.documentcloud.org/documents/28856720-cnn-poll-conducted-by-ssrs-michigan-october/,2026-11-10,L2 modeled party registration
+SSRS,all,panel_source,L2 registration-based sample + SSRS Opinion Panel (probability),https://www.documentcloud.org/documents/28856720-cnn-poll-conducted-by-ssrs-michigan-october/,2026-11-10,RBS purchased by SSRS from L2; SSRS Opinion Panel
+Concord Public Opinion Partners,all,mode_main,mixed,https://concordpublicopinionpartners.org/blog/michigan-ge-2026,2026-11-10,via live calls to cell phones and landlines and text-to-web surveys
+Concord Public Opinion Partners,all,modes,live_phone;text_to_web,https://concordpublicopinionpartners.org/blog/michigan-ge-2026,2026-11-10,live calls and text-to-web
+Concord Public Opinion Partners,all,population,LV,https://concordpublicopinionpartners.org/blog/michigan-ge-2026,2026-11-10,likely general election voters
+Concord Public Opinion Partners,all,weight_education,yes,https://concordpublicopinionpartners.org/blog/michigan-ge-2026,2026-11-10,"weighted by Race, Age, Gender, Partisanship, College Attainment, CD, and Mode"
+Concord Public Opinion Partners,all,weight_recalled_vote,not_listed,https://concordpublicopinionpartners.org/blog/michigan-ge-2026,2026-11-10,"Race, Age, Gender, Partisanship, College Attainment, CD, Mode"
+Concord Public Opinion Partners,all,weight_party,yes,https://concordpublicopinionpartners.org/blog/michigan-ge-2026,2026-11-10,Partisanship
+Concord Public Opinion Partners,all,panel_source,unknown,,,not stated
+Impact Research,all,mode_main,mixed,https://freshstartpac.org/wp-content/uploads/2026/10/SC-Senate-Track-Public-Memo.pdf,2026-11-10,a mixed phone and text-to-web survey
+Impact Research,all,modes,live_phone;text_to_web;online_opt_in,https://drannieandrews.com/wp-content/uploads/2026/08/IMPACT-SC-SEN-POLL-MEMO-AUG-2026.pdf,2026-11-10,Oct: phone and text-to-web; Aug: multi-modal online and text-to-web (phone mode not specified as live)
+Impact Research,all,population,LV,https://freshstartpac.org/wp-content/uploads/2026/10/SC-Senate-Track-Public-Memo.pdf,2026-11-10,n=800 likely 2026 general election voters
+Impact Research,all,weight_education,unknown,,,not stated in memos
+Impact Research,all,weight_recalled_vote,unknown,,,not stated in memos
+Impact Research,all,weight_party,unknown,,,not stated in memos
+Impact Research,all,panel_source,unknown,,,not stated in memos
+Targoz Market Research,all,mode_main,online_opt_in,https://www.targoz.com/market-matters-blog/2026/11/2/republicans-lead-all-five-florida-statewide-races,2026-11-10,"Online poll of n=1,200 registered voters"
+Targoz Market Research,all,modes,online_opt_in,https://www.targoz.com/market-matters-blog/2026/11/2/republicans-lead-all-five-florida-statewide-races,2026-11-10,Online poll
+Targoz Market Research,all,population,RV,https://www.targoz.com/market-matters-blog/2026/11/2/republicans-lead-all-five-florida-statewide-races,2026-11-10,registered voters
+Targoz Market Research,all,weight_education,unknown,,,"'weighted by demographics, party, geography, and behavioral measures' (education not named)"
+Targoz Market Research,all,weight_recalled_vote,unknown,,,'behavioral measures' not defined
+Targoz Market Research,all,weight_party,yes,https://www.targoz.com/market-matters-blog/2026/11/2/republicans-lead-all-five-florida-statewide-races,2026-11-10,"weighted by demographics, party, geography, and behavioral measures"
+Targoz Market Research,all,panel_source,unknown,,,not stated
+Fabrizio Ward / Impact Research,all,mode_main,mixed,https://www.aarp.org/pri/topics/voter-research/politics/2026-midterm-election-poll-alaska/,2026-11-10,"live interviewer on cellphone (40%) and landline (15%), as well as SMS-to-web (45%)"
+Fabrizio Ward / Impact Research,all,modes,live_phone;text_to_web,https://www.aarp.org/pri/topics/voter-research/politics/2026-midterm-election-poll-alaska/,2026-11-10,live interviewer and SMS-to-web
+Fabrizio Ward / Impact Research,all,population,LV,https://www.documentcloud.org/documents/28686304-aarp-2026-north-carolina-statewide-survey-topline-1/,2026-11-10,Total likely voters 18+ - 1115
+Fabrizio Ward / Impact Research,all,weight_education,unknown,,,not stated in the pages fetched (AARP methodology PDF not yet read)
+Fabrizio Ward / Impact Research,all,weight_recalled_vote,unknown,,,not stated in the pages fetched (AARP methodology PDF not yet read)
+Fabrizio Ward / Impact Research,all,weight_party,unknown,,,not stated in the pages fetched (AARP methodology PDF not yet read)
+Fabrizio Ward / Impact Research,all,panel_source,unknown,,,not stated in the pages fetched (AARP methodology PDF not yet read)

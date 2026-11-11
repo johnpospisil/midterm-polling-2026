@@ -36,6 +36,7 @@ Act as a senior data scientist whose priority is making results understandable t
 | Census | ACS 5-year 2024; key in `.env` as `CENSUS_API_KEY` (verified 2026-11-09) |
 | Final polls (2026-11-10) | Primary: each pollster's latest poll per race with field end in the last 21 days. Sensitivity: last 14 days; all polls in the last 21 days |
 | Partisan polls (2026-11-10) | Main analysis excludes `candidate_internal`, `party_committee` and `partisan_client` (robustness check includes them). `affiliated_pollster` (Wikipedia firm tag only) stays in, with a check without it |
+| Pollster methods (2026-11-10) | No emails to pollsters or AAPOR; fields with no public source stay `unknown`. Mixed-mode pollsters are their own group (not folded into their main mode); `mode_main` is available for a sensitivity check |
 
 ## Timeline
 
@@ -102,7 +103,7 @@ Copy each prompt into Claude Code in order. "When" is the earliest sensible star
 
   **Checkpoint questions:** Are there races or sources with no pre-election snapshot? Should we accept a Wayback snapshot from several days before the election in those cases?
 
-### Phase 1: Poll and pollster tables (Nov 10–14)
+### Phase 1: Poll and pollster tables (Nov 10–14) ✅ DONE
 
 - [x] ✅ DONE! **P03: Race registry + Wikipedia poll parser.** _Done 2026-11-09: races.csv (507 races); polls_raw.parquet with 2,654 rows (Sen 815, Gov 722, House 381, generic 736); 0 silent table misses; 77 row issues listed._
   **When:** Wed Nov 11 – Thu Nov 12.
@@ -127,7 +128,7 @@ Copy each prompt into Claude Code in order. "When" is the earliest sensible star
 
   **Checkpoint questions:** What should the cutoff be for "final polls": last 2 weeks, last 3 weeks, or last poll per pollster? Should partisan-sponsored polls be in the main analysis or only in a robustness check?
 
-- [ ] **P05: Pollster attributes table.**
+- [x] ✅ DONE! **P05: Pollster attributes table.** _Done 2026-11-10: 325 raw names → 237 pollsters; cited methods for the top 25 (51% of statewide polls, 67% of final-3-week nonpartisan ones); AAPOR membership mostly unknown._
   **When:** Fri Nov 13 – Sat Nov 14 (can run alongside P06).
   > Build `build/pollsters.py` and the cited `data/reference/pollster_methods.csv` for at least the 20 pollsters with the most 2026 statewide polls (spec §0): canonical name and aliases, mode(s) (live phone, IVR, online opt-in panel, probability panel, text-to-web, mixed), population, weighting variables (education, **recalled 2024 vote**, party ID), panel source, AAPOR Transparency Initiative membership, and a source URL + access date for every field. Use "unknown", never a guess. Normalise pollster names in the poll table to the canonical names.
 
@@ -333,3 +334,4 @@ Copy each prompt into Claude Code in order. "When" is the earliest sensible star
 - 2026-11-09: P02 done (see DATA.md "P02 capture"). Nominees come from the election-eve infobox; that's how final-matchup tables are picked. P03 must handle replaced candidates (ME, SC Senate), independents as the D side (NE Senate), shared surnames (AK Senate) and 3-way races. User decided: keep late-added polls (flagged, field end ≤ Nov 2) and skip DDHQ/Economist probabilities. Next: P03.
 - 2026-11-09: P03 done (see DATA.md "P03"). Generic-ballot polls come from a Wikipedia template, not the House page. races.csv carries no Split Ticket numbers (terms rule). 2026-11-10: user approved the non-standard-contest rules (see Decisions). Next: P04.
 - 2026-11-10: P04 done (see DATA.md "P04"). Wikipedia's (D)/(R) tag marks the firm, not the sponsor; sponsors come from the "Partisan clients" footnotes. User approved the final-poll rule (latest per pollster, last 21 days) and the partisan-poll rule (see Decisions). The two review files in `review/` await the user's hand check. Next: P05.
+- 2026-11-10: P05 done (see DATA.md "P05"). The canonical pollster is the fieldwork firm, with sponsors in `partner`. YouGov's own state polls were text-to-web, not its opt-in panel, so methods are scoped (`own`/`all`). Fixed nondeterministic rating ties. `make build` now runs races → polls → pollsters. User decided: no emails to pollsters (unknowns stay "unknown"), and mixed-mode pollsters stay their own group (see Decisions). Next: P06.

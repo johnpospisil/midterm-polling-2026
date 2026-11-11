@@ -80,6 +80,25 @@ Every status note is dated. Re-check before each publish (P11, P20).
 - **Sponsors:** Wikipedia's (D)/(R) tag after a pollster's name marks the **firm**. Sponsors are in a separate footnote group, "Partisan clients", which also lists news outlets and nonprofits. `sponsor_class` = `candidate_internal` (175 polls), `party_committee` (16), `partisan_client` (258), `sponsored_nonpartisan` (110: media, academic, AARP…), `affiliated_pollster` (565: firm tag only), `nonpartisan` (1,068). `is_partisan` is true for the first three. Share of polls that are partisan: Senate 19%, governor 18%, House 45%, generic ballot 0%.
 - **User review files** (`review/`, kept across rebuilds): `sponsors_for_review.csv` (250 sponsors; `partisan_Y_N` overrides the automatic class) and `double_entry_sample.csv` (212 polls = 10%, seeded; priority 1 = Senate/governor polls in the final three weeks, 36 rows).
 
+## P05 pollster names and methods (2026-11-10)
+
+**Names.** `data/reference/pollster_aliases.csv` maps all 325 raw Wikipedia pollster strings to 237 pollsters (`build/pollsters.py`, tested).
+- The canonical pollster is the firm that did the fieldwork. Media and other sponsors go to `partner` (CNN/SSRS → SSRS + CNN; Bowling Green State University/YouGov → YouGov + BGSU).
+- Bipartisan teams stay a team (Fabrizio Ward / Impact Research; Hart / Public Opinion Strategies; Beacon / Shaw for Fox News). NYT/Siena stays separate from Siena's own polls.
+- Spelling variants are merged (Grayhouse, Public Opinon Strategies, KTSP, …).
+- Dedupe still uses the raw name. After canonicalising, only 2 pairs share race, pollster and dates, and both are different polls with different sponsors (Yahoo vs Economist/YouGov; Strength In Numbers vs The Argument/Verasight).
+
+**Methods.** `data/reference/pollster_methods.csv` is in long format: pollster × field, with `source_url`, `accessed` and the quoted `evidence`. It covers the 25 pollsters with the most 2026 Senate and governor polls (176 rows).
+- Sources are each pollster's own 2026 releases, cached in `data/raw/pollster_releases/` with a manifest (robots.txt checked, 2 s between requests).
+- Values: `yes`; `no` (only when the release says so); `not_listed` (the release lists its weighting variables and this one isn't among them); `sometimes` (varies by poll); `unknown` (nothing found). Nothing is guessed.
+- `scope = own` covers only polls without a partner. YouGov's own 2026 state polls are text-to-web from voter lists (the "ttw" series), while its university and media partnerships may use different designs. So only YouGov's own polls are coded.
+- Coverage: the coded pollsters account for 633 of 1,239 statewide polls (51%) and 207 of the 309 nonpartisan statewide polls in the final 3 weeks (67%).
+- Most often unknown: AAPOR Transparency Initiative membership (24 of 25; AAPOR doesn't publish a current member list that we could find, so only self-declared membership counts: ActiVote), panel source (13), recalled-vote weighting (12) and education weighting (11).
+- Blocked: the NYT toplines (403), the UNH PDF (403) and Change Research's AAPOR statement (429, retry later). X/Twitter-only releases (Alaska Survey Research, some PPP) were not fetched.
+- The release texts are quoted for citation only; the cached files are not redistributed.
+
+**Determinism fix.** Race ratings now use a documented tie-break, and the sponsor review file has a stable order. The rating rule is the most common rating, with ties going to the tied rating nearest the median; this is symmetric for both parties. This changed 4 tied consensus ratings in `races.csv` (GOV-OR, SEN-ME, SEN-MN, SEN-MT), which had previously been picked at random. Two consecutive builds now produce identical files.
+
 ## Sources that block reuse, and fallbacks
 
 | Source | Blocker | Fallback |

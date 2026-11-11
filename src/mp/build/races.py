@@ -94,6 +94,32 @@ def _ge_header_counts(html: str, nominees: dict[str, str]) -> dict[str, int]:
     return dict(counts)
 
 
+RATING_SCALE = {"Safe D": -4, "Likely D": -3, "Lean D": -2, "Tilt D": -1, "Tossup": 0,
+                "Tilt R": 1, "Lean R": 2, "Likely R": 3, "Safe R": 4}
+_SCALE_NAME = {v: k for k, v in RATING_SCALE.items()}
+
+
+def consensus_rating(ratings: list[str]) -> str | None:
+    """Most common rating across raters. A tie goes to the tied rating nearest the median
+    rating; if two are equally near (e.g. Lean D vs Lean R), the median itself. Symmetric
+    for both parties and independent of input order."""
+    vals = sorted(RATING_SCALE[r] for r in ratings if r in RATING_SCALE)
+    if not vals:
+        return None
+    counts = {v: vals.count(v) for v in set(vals)}
+    top = max(counts.values())
+    tied = sorted(v for v, c in counts.items() if c == top)
+    if len(tied) == 1:
+        return _SCALE_NAME[tied[0]]
+    n = len(vals)
+    median = (vals[(n - 1) // 2] + vals[n // 2]) / 2
+    dist = {v: abs(v - median) for v in tied}
+    nearest = [v for v in tied if dist[v] == min(dist.values())]
+    if len(nearest) == 1:
+        return _SCALE_NAME[nearest[0]]
+    return _SCALE_NAME[int(median)]  # int() truncates toward Tossup
+
+
 def build(manifest: Path = Path("data/raw/wikipedia/manifest.csv"),
           forecasts: Path = Path("data/processed/final_forecasts.parquet"),
           st_meta: Path = Path("data/raw/forecasts/splitticket/meta.json"),
@@ -102,8 +128,8 @@ def build(manifest: Path = Path("data/raw/wikipedia/manifest.csv"),
 
     fc = pl.read_parquet(forecasts)
     ratings = fc.filter(pl.col("kind") == "rating")
-    consensus = {r["race_id"]: (r["rating"], r["n"]) for r in ratings.group_by("race_id").agg(
-        pl.col("rating").mode().first().alias("rating"), pl.len().alias("n")).to_dicts()}
+    consensus = {r["race_id"]: (consensus_rating(r["rating"]), r["n"]) for r in ratings.group_by(
+        "race_id").agg(pl.col("rating"), pl.len().alias("n")).to_dicts()}
 
     rows = []
     pre = [r for r in csv.DictReader(manifest.open())

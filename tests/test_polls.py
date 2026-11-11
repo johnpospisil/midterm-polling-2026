@@ -186,3 +186,13 @@ def test_rewriting_review_files_keeps_user_entries(tmp_path):
     merged = merge_keep_user_columns(new, old, key="k", user_cols=["partisan_Y_N"])
     assert merged.sort("k")["partisan_Y_N"].to_list() == ["Y", "", ""]
     assert merged.sort("k")["x"].to_list() == [9, 9, 9]
+
+
+def test_sponsor_review_order_is_stable():
+    from mp.build.polls import sponsors_for_review
+
+    rows = [raw(pollster_raw=f"P{i}", partisan_client_notes=[f"Poll sponsored by {n}"])
+            for i, n in enumerate(["Zed PAC", "Alpha PAC", "Mid PAC"])]
+    polls, _ = run(rows)
+    assert sponsors_for_review(polls)["sponsor_note"].to_list() == [
+        "Poll sponsored by Alpha PAC", "Poll sponsored by Mid PAC", "Poll sponsored by Zed PAC"]

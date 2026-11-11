@@ -246,11 +246,11 @@ def sponsors_for_review(polls: pl.DataFrame) -> pl.DataFrame:
     s = (polls.filter(pl.col("partisan_client_notes").list.len() > 0)
          .explode("partisan_client_notes")
          .group_by(pl.col("partisan_client_notes").alias("sponsor_note"))
-         .agg(pl.len().alias("polls"), pl.col("sponsor_class").first().alias("auto_class"),
+         .agg(pl.len().alias("polls"), pl.col("sponsor_class").sort().first().alias("auto_class"),
               pl.col("race_id").unique().sort().str.join(", ").alias("races")))
     return (s.with_columns(
         pl.lit("").alias("partisan_Y_N"))
-        .sort(["auto_class", "polls"], descending=[False, True]))
+        .sort(["auto_class", "polls", "sponsor_note"], descending=[False, True, False]))
 
 
 if __name__ == "__main__":
