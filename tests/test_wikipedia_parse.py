@@ -107,6 +107,26 @@ def test_note_backlink_letters_stripped():
     assert r["notes"] == ["Poll sponsored by AARP"]
 
 
+def test_partisan_client_group_recorded():
+    html = (H(2, "General election") + H(3, "Polling")
+            + poll_table(["Susan Collins (R)", "Troy Jackson (D)"], [
+                ('<tr><td>PPP<sup class="reference"><a href="#cite_note-X-1">[A]</a></sup></td>'
+                "<td>July 1–3, 2026</td><td>600 (LV)</td><td>±4%</td><td>48%</td><td>47%</td></tr>"),
+                ('<tr><td>UNH<sup class="reference"><a href="#cite_note-Y-2">[a]</a></sup></td>'
+                "<td>July 5–7, 2026</td><td>600 (LV)</td><td>±4%</td><td>48%</td><td>47%</td></tr>")])
+            # live-page structure: <link> between label and list, and an extra wrapper div
+            + '<p><b>Partisan clients</b></p><link rel="mw-deduplicated-inline-style"/>'
+              '<div><div class="mw-references-wrap"><ol class="references">'
+              '<li id="cite_note-X-1">^ Poll sponsored by Maine Forward</li></ol></div></div>'
+            + '<div><div class="mw-references-wrap"><ol class="references">'
+              '<li id="cite_note-Y-2">^ Includes leaners</li></ol></div></div>')
+    html = f'<div class="mw-content-ltr mw-parser-output">{html}</div>'
+    rows, _ = parse_poll_tables(html, race_id="SEN-ME-2026", principals=ME_PRINCIPALS,
+                                matcher=NomineeMatcher(ME_NOMINEES))
+    assert rows[0]["partisan_client_notes"] == ["Poll sponsored by Maine Forward"]
+    assert rows[1]["partisan_client_notes"] == [] and rows[1]["notes"] == ["Includes leaners"]
+
+
 def test_reversed_dates_flagged_not_fixed():
     html = (H(2, "General election") + H(3, "Polling")
             + poll_table(["Susan Collins (R)", "Troy Jackson (D)"], [

@@ -61,6 +61,25 @@ Every status note is dated. Re-check before each publish (P11, P20).
 - **Row issues** (`data/processed/p03_parse_issues.csv`): 63 with no sample size, 10 where a principal wasn't offered, 3 month-only dates, 1 reversed date range in the source ("July 8–6", NV gov; flagged, not fixed).
 - **Post-election edits:** 16 rows added after the election (field end ≤ Nov 2), 2 edited, 3 removed.
 
+## P04 poll table (2026-11-10)
+
+**`data/processed/polls.parquet`** (gitignored), one row per poll × race:
+
+| Step | Rows |
+|---|---|
+| Rows in polls_raw | 2,657 |
+| − removed from Wikipedia after the election | 3 |
+| − fieldwork ended after election eve | 0 |
+| − a principal candidate not offered | 10 |
+| − exact duplicate rows | 3 |
+| − other versions of the same poll | 514 |
+| **= polls** | **2,127** (Senate 646, governor 593, House 339, generic 549) |
+
+- **Version rule** (same race, pollster, field dates, even across tables): RCV round 1 > plain vote > later rounds; LV > V > RV > A; full ballot over head-to-head; "with leaners" (smallest unallocated share); first listed.
+- **Margins** are two-party D − R (`margin`), with `dem_2p` and raw `margin_raw`. Dates: `field_mid` (rounded down), `days_before` (to 2026-11-03), `week_before`.
+- **Sponsors:** Wikipedia's (D)/(R) tag after a pollster's name marks the **firm**. Sponsors are in a separate footnote group, "Partisan clients", which also lists news outlets and nonprofits. `sponsor_class` = `candidate_internal` (175 polls), `party_committee` (16), `partisan_client` (258), `sponsored_nonpartisan` (110: media, academic, AARP…), `affiliated_pollster` (565: firm tag only), `nonpartisan` (1,068). `is_partisan` is true for the first three. Share of polls that are partisan: Senate 19%, governor 18%, House 45%, generic ballot 0%.
+- **User review files** (`review/`, kept across rebuilds): `sponsors_for_review.csv` (250 sponsors; `partisan_Y_N` overrides the automatic class) and `double_entry_sample.csv` (212 polls = 10%, seeded; priority 1 = Senate/governor polls in the final three weeks, 36 rows).
+
 ## Sources that block reuse, and fallbacks
 
 | Source | Blocker | Fallback |

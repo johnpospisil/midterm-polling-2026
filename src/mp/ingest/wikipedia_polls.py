@@ -241,13 +241,34 @@ def section_path(table) -> list[str]:
     return [out[k] for k in sorted(out)]
 
 
-def _refs(cell, soup) -> tuple[list[str], list[str]]:
-    """(citation URLs, note texts) for footnote markers inside a cell."""
+def _note_group(li) -> str | None:
+    """Label of the footnote list an item belongs to, e.g. 'Partisan clients' (a bold paragraph
+    just before the references wrapper), or None for unlabelled lists."""
+    from mp.ingest.aggregators import clean
+
+    ol = li.find_parent("ol")
+    if ol is None:
+        return None
+    # climb to the top-level block of the article body (live pages wrap the list in extra divs)
+    block = ol
+    while block.parent is not None and "mw-parser-output" not in (block.parent.get("class") or []):
+        block = block.parent
+    prev = block.find_previous_sibling()
+    while prev is not None and prev.name in ("link", "style", "meta"):
+        prev = prev.find_previous_sibling()
+    if prev is not None and prev.name in ("p", "div") and prev.find("b"):
+        label = clean(prev.get_text(" "))
+        return label if len(label) <= 40 else None
+    return None
+
+
+def _refs(cell, soup) -> tuple[list[str], list[str], list[str]]:
+    """(citation URLs, note texts, notes in Wikipedia's 'Partisan clients' group) for a cell."""
     from bs4 import BeautifulSoup
 
     from mp.ingest.aggregators import clean
 
-    urls, notes = [], []
+    urls, notes, partisan = [], [], []
     for a in cell.select("sup.reference a[href^='#']"):
         li = soup.find(id=a["href"][1:])
         if li is None:
@@ -255,14 +276,17 @@ def _refs(cell, soup) -> tuple[list[str], list[str]]:
         ext = [x["href"] for x in li.select("a.external[href]")]
         if ext:
             urls += ext
-        else:
-            li = BeautifulSoup(str(li), "lxml")  # copy, so removing backlinks leaves the page intact
-            for b in li.select(".mw-cite-backlink"):
-                b.decompose()
-            txt = clean(re.sub(r"^\s*\^\s*", "", li.get_text(" ")))
-            if txt:
-                notes.append(txt)
-    return urls, notes
+            continue
+        group = _note_group(li)
+        li = BeautifulSoup(str(li), "lxml")  # copy, so removing backlinks leaves the page intact
+        for b in li.select(".mw-cite-backlink"):
+            b.decompose()
+        txt = clean(re.sub(r"^\s*\^\s*", "", li.get_text(" ")))
+        if txt:
+            notes.append(txt)
+            if group and "partisan" in group.lower():
+                partisan.append(txt)
+    return urls, notes, partisan
 
 
 def parse_poll_tables(html: str, *, race_id: str | None = None, principals: dict | None = None,
@@ -353,7 +377,7 @@ def parse_poll_tables(html: str, *, race_id: str | None = None, principals: dict
                 continue
             tag = re.search(r"\(([DRIL])\)\s*$", ptxt)
             pollster = re.sub(r"\s*\([DRIL]\)\s*$", "", ptxt).strip()
-            urls, notes = _refs(row[0], soup)
+            urls, notes, partisan_notes = _refs(row[0], soup)
             n, pop = parse_sample(vals[2])
             fs, fe = parse_field_dates(vals[1])
             gid = group_ids.setdefault(id(row[0]), len(group_ids))
@@ -362,7 +386,7 @@ def parse_poll_tables(html: str, *, race_id: str | None = None, principals: dict
                 "race_id": rid, "table_index": t_idx, "row_index": r_idx, "poll_group": gid,
                 "section": sec_str, "pollster_raw": pollster,
                 "pollster_partisan_tag": tag.group(1) if tag else None,
-                "notes": notes, "citation_urls": urls,
+                "notes": notes, "partisan_client_notes": partisan_notes, "citation_urls": urls,
                 "dates_raw": vals[1], "field_start": fs, "field_end": fe,
                 "date_issue": ("unparsed" if fe is None else "start_after_end" if fs > fe
                                else "month_only" if _MONTH_ONLY.match(vals[1]) else None),

@@ -34,6 +34,8 @@ Act as a senior data scientist whose priority is making results understandable t
 | Non-standard contests (2026-11-10) | No Democrat → the independent is the D side (ID, NE, SD Sen; AK House), flagged for a check without them. RCV races (AK; ME Sen/House) → first-round shares, same rule for every pollster. 3-way races → margin is D side minus R side only; the third candidate's share is kept in `candidates`. Same-party top-two contests are dropped automatically (no R side) |
 | DDHQ / Economist probabilities | Skipped (blocked); chart 6 uses their ratings only |
 | Census | ACS 5-year 2024; key in `.env` as `CENSUS_API_KEY` (verified 2026-11-09) |
+| Final polls (2026-11-10) | Primary: each pollster's latest poll per race with field end in the last 21 days. Sensitivity: last 14 days; all polls in the last 21 days |
+| Partisan polls (2026-11-10) | Main analysis excludes `candidate_internal`, `party_committee` and `partisan_client` (robustness check includes them). `affiliated_pollster` (Wikipedia firm tag only) stays in, with a check without it |
 
 ## Timeline
 
@@ -113,7 +115,7 @@ Copy each prompt into Claude Code in order. "When" is the earliest sensible star
 
   **Checkpoint questions:** How should races without a standard D-vs-R contest be handled (D-vs-D top-two, independent instead of a Democrat, RCV races)? Recommended: exclude same-party races, treat a major independent as the "D side" with a flag, and use first-round shares for RCV.
 
-- [ ] **P04: Poll table (margins, dedupe, flags).**
+- [x] ✅ DONE! **P04: Poll table (margins, dedupe, flags).** _Done 2026-11-10: 2,657 raw rows → 2,127 polls; sponsor classes split Wikipedia's firm tag from its "Partisan clients" footnotes; review files for sponsors (250) and double entry (212)._
   **When:** Thu Nov 12 – Fri Nov 13.
   > Implement `build/margins.py` and `build/polls.py` per spec §4: one row per poll × race, two-party margin (D − R) using the CLAUDE.md sign convention, field-date midpoint, days before the election, n, population; prefer LV > RV > A when a poll publishes several; dedupe polls reported in multiple places; flag partisan/candidate-sponsored polls and internal polls. Tests first (sign convention, two-party conversion, dedupe rules, LV preference). Export a random 10% sample to `review/double_entry_sample.csv` with source links for me to check by hand against the original pollster release.
 
@@ -330,3 +332,4 @@ Copy each prompt into Claude Code in order. "When" is the earliest sensible star
 - 2026-11-09: P01 done (see DATA.md). Wikimedia needs a User-Agent with an `https://` contact URL plus the library name. The 2026 poll table must be released under CC BY-SA 4.0. User approved the forecaster list and the unclear-terms rule (see Decisions); Census key verified. Next: P02.
 - 2026-11-09: P02 done (see DATA.md "P02 capture"). Nominees come from the election-eve infobox; that's how final-matchup tables are picked. P03 must handle replaced candidates (ME, SC Senate), independents as the D side (NE Senate), shared surnames (AK Senate) and 3-way races. User decided: keep late-added polls (flagged, field end ≤ Nov 2) and skip DDHQ/Economist probabilities. Next: P03.
 - 2026-11-09: P03 done (see DATA.md "P03"). Generic-ballot polls come from a Wikipedia template, not the House page. races.csv carries no Split Ticket numbers (terms rule). 2026-11-10: user approved the non-standard-contest rules (see Decisions). Next: P04.
+- 2026-11-10: P04 done (see DATA.md "P04"). Wikipedia's (D)/(R) tag marks the firm, not the sponsor; sponsors come from the "Partisan clients" footnotes. User approved the final-poll rule (latest per pollster, last 21 days) and the partisan-poll rule (see Decisions). The two review files in `review/` await the user's hand check. Next: P05.
